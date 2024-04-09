@@ -18,14 +18,14 @@
     </header>
 
     <main>
-        <form>
+        <form action="/submit_form" method="post">
             <span>Full name*</span>
-            <input type="text" id="name" placeholder="Your name.." name="name">
-            <input type="text" id="lastname" placeholder="Your last name.." name="lastname">
+            <input type="text" id="name" placeholder="Your name.." name="name" required>
+            <input type="text" id="lastname" placeholder="Your last name.." name="lastname" required>
             <br>
 
             <label for="phone">Phone number*</label>
-            <input type="tel" placeholder="Your phone.." id="phone" name="phone">
+            <input type="tel" placeholder="Your phone.." id="phone" name="phone" required>
             <br>
 
             <label for="country">Country</label>
