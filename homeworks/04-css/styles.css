@@ -26,10 +26,13 @@
 
 body {
     background-color: var(--background-primary);
+    font-family: "Poppins", sans-serif;
     min-height: 100vh;
+}
+
+.wrapper {
     max-width: 1728px;
     margin: 0 auto;
-    font-family: "Poppins", sans-serif;
     padding: 0 6px;
 }
 
@@ -217,7 +220,7 @@ body {
 }
 
 .main__projects {
-    max-width: 757px;
+    max-width: 760px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -292,10 +295,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    body {
-        padding: 0 10px;
-    }
-
     .button-container {
         display: flex;
         justify-content: center;
@@ -324,6 +323,7 @@ body {
 
     .header__info-container {
         width: 100%;
+        margin-left: 0;
     }
 
     .header__img {
