@@ -12,6 +12,16 @@
     --text-terciary: #19191B;
 }
 
+[data-theme="dark"] {
+    --bg-primary: #0C151D;
+    --bg-secondary: #171F26;
+    --bg-terciary: #0C151D;
+    --bg-details: #FFE071;
+    --text-primary: #F1F2F4;
+    --text-secondary: #A3ABB2;
+    --text-terciary: #A3ABB2;
+}
+
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -47,11 +57,13 @@ span {
 }
 
 .header__button {
-    padding: 1.5rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
     border: none;
     outline: none;
     background-color: var(--bg-secondary);
+    cursor: pointer;
 }
 
 .header__button-svg,
@@ -65,8 +77,8 @@ span {
 }
 
 .header__main-img {
-    width: 192px;
-    height: 192px;
+    width: 12.5rem;
+    height: 12.5rem;
     border-radius: 50%;
     object-fit: cover;
     padding: 0.6rem;
@@ -76,6 +88,14 @@ span {
 
 .header__main-developer {
     padding: 1rem 0 1rem 2rem;
+}
+
+.header__title {
+    color: var(--text-primary);
+}
+
+.header__subtitle {
+    color: var(--text-secondary);
 }
 
 .header__title {
@@ -107,8 +127,18 @@ span {
         font-size: 8px;
     }
 
+    .header__button svg {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
     .header__main {
         flex-direction: column;
+    }
+
+    .header__main-link svg {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     .header__main-developer {
@@ -122,6 +152,6 @@ span {
 
     .header__main-list {
         justify-content: center;
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
 }
