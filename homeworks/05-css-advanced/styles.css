@@ -66,6 +66,11 @@ span,
     outline: none;
     background-color: var(--bg-secondary);
     cursor: pointer;
+    transition: box-shadow .6s ease;
+}
+
+.header__button:hover {
+    box-shadow: 0 0 10px 10px var(--bg-details);
 }
 
 .header__button-svg,
@@ -226,6 +231,10 @@ span,
 .footer__p {
     margin: 6rem 0 3rem;
 }
+
+/* animations */
+
+
 
 @media (max-width: 1024px) {
 
