@@ -10,7 +10,12 @@ function changeTheme() {
 }
 
 buttonElement.addEventListener("click", () => {
+  wrapper.classList.add("theme-transition");
   changeTheme();
+
+  setTimeout(() => {
+    wrapper.classList.remove("theme-transition");
+  }, 300);
 });
 
 window.addEventListener("load", () => {

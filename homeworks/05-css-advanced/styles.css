@@ -38,6 +38,11 @@ span,
 
 .wrapper {
     background-color: var(--bg-primary);
+    transition: all 2s linear;
+}
+
+.theme-transition {
+    transition: all 2s linear;
 }
 
 .container {
