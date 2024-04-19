@@ -73,6 +73,7 @@ span,
     animation-duration: 2s;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
+    transform-origin: center;
 }
 
 .header__button-svg,
@@ -386,21 +387,26 @@ span,
 @keyframes button-animation {
     0% {
         box-shadow: none;
+        transform: scale(1);
     }
 
     25% {
         box-shadow: 0 0 5px 3px var(--bg-details);
+        transform: scale(1.05);
     }
 
     50% {
         box-shadow: 0 0 5px 6px var(--bg-details);
+        transform: scale(1.1);
     }
 
     75% {
         box-shadow: 0 0 5px 6.5px var(--bg-details);
+        transform: scale(1.05);
     }
 
     100% {
         box-shadow: 0 0 5px 6.75px var(--bg-details);
+        transform: scale(1);
     }
 }
