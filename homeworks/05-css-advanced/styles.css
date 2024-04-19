@@ -66,11 +66,13 @@ span,
     outline: none;
     background-color: var(--bg-secondary);
     cursor: pointer;
-    transition: box-shadow .6s ease;
 }
 
 .header__button:hover {
-    box-shadow: 0 0 10px 10px var(--bg-details);
+    animation-name: button-animation;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
 }
 
 .header__button-svg,
@@ -259,6 +261,10 @@ span,
     transition: opacity .6s ease;
 }
 
+.main__image-content:hover {
+    opacity: 1;
+}
+
 .main__image-text {
     display: flex;
     align-items: center;
@@ -283,10 +289,6 @@ span,
 .main__image-button svg {
     width: 1.125rem;
     height: 0.625rem;
-}
-
-.main__image-content:hover {
-    opacity: 1;
 }
 
 .footer__p {
@@ -378,5 +380,27 @@ span,
     .main__image-button svg {
         width: 1.2rem;
         height: 0.825rem;
+    }
+}
+
+@keyframes button-animation {
+    0% {
+        box-shadow: none;
+    }
+
+    25% {
+        box-shadow: 0 0 5px 3px var(--bg-details);
+    }
+
+    50% {
+        box-shadow: 0 0 5px 6px var(--bg-details);
+    }
+
+    75% {
+        box-shadow: 0 0 5px 6.5px var(--bg-details);
+    }
+
+    100% {
+        box-shadow: 0 0 5px 6.75px var(--bg-details);
     }
 }
