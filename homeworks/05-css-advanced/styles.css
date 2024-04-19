@@ -314,6 +314,10 @@ span,
     margin: 6rem 0 3rem;
 }
 
+.scroll {
+    display: none;
+}
+
 @media (max-width: 1024px) {
 
     html {
@@ -399,6 +403,27 @@ span,
     .main__image-button svg {
         width: 1.2rem;
         height: 0.825rem;
+    }
+
+    .scroll {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+
+    .scroll__button {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        padding: 1rem 3rem;
+        transition: all .2s ease;
+        font-weight: bold;
+    }
+
+    .scroll__button:hover {
+        transform: scale(2);
     }
 }
 
