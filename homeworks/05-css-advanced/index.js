@@ -12,3 +12,7 @@ function changeTheme() {
 buttonElement.addEventListener("click", () => {
   changeTheme();
 });
+
+window.addEventListener("load", () => {
+  wrapper.setAttribute("data-theme", theme);
+});

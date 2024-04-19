@@ -118,7 +118,8 @@ span,
 .section__link,
 .main__portfolio-text,
 .main__skills,
-.footer__p {
+.footer__p,
+.main__image-text {
     font-size: 1.375rem;
 }
 
@@ -154,7 +155,9 @@ span,
 .section__stats-title,
 .section__stats-p,
 .main__portfolio-text,
-.main__skills {
+.main__skills,
+.main__image-title,
+.main__image-p {
     margin: 0;
 }
 
@@ -228,13 +231,67 @@ span,
     max-width: 760px;
 }
 
+.main__image-container {
+    position: relative;
+}
+
+.main__img {
+    display: block;
+}
+
+.main__image-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    border-radius: 12px;
+    background-color: #FFE071E0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    transition: opacity .6s ease;
+}
+
+.main__image-text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #3D3D3D;
+}
+
+.main__image-p {
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.main__image-button {
+    width: 2.375rem;
+    height: 2.375rem;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.main__image-button svg {
+    width: 1.125rem;
+    height: 0.625rem;
+}
+
+.main__image-content:hover {
+    opacity: 1;
+}
+
 .footer__p {
     margin: 6rem 0 3rem;
 }
-
-/* animations */
-
-
 
 @media (max-width: 1024px) {
 
@@ -303,5 +360,23 @@ span,
 
     .footer__p {
         margin: 3rem 0;
+    }
+
+    .main__image-title {
+        font-size: 2rem;
+    }
+
+    .main__image-p {
+        font-size: 1.3rem
+    }
+
+    .main__image-button {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .main__image-button svg {
+        width: 1.2rem;
+        height: 0.825rem;
     }
 }
