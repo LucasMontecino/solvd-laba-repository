@@ -384,7 +384,7 @@ span,
     }
 
     .footer__p {
-        margin: 3rem 0;
+        margin: 3rem 0 5rem;
     }
 
     .main__image-title {
@@ -408,7 +408,8 @@ span,
     .scroll {
         display: flex;
         justify-content: center;
-        margin-top: 3rem;
+        position: fixed;
+        bottom: 2%;
     }
 
     .scroll__button {
