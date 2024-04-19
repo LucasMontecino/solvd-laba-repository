@@ -53,7 +53,6 @@ span,
     flex-direction: column;
     align-items: center;
     padding: 2rem 3rem;
-    gap: 2rem;
 }
 
 .header {
@@ -64,8 +63,8 @@ span,
 }
 
 .header__button {
-    width: 5rem;
-    height: 5rem;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: none;
     outline: none;
@@ -91,8 +90,8 @@ span,
 }
 
 .header__main-img {
-    width: 12.5rem;
-    height: 12.5rem;
+    width: 192px;
+    height: 192px;
     border-radius: 50%;
     object-fit: cover;
     padding: 0.6rem;
@@ -101,7 +100,7 @@ span,
 }
 
 .header__main-developer {
-    padding: 1rem 0 1rem 2rem;
+    padding: 16px 0 16px 32px;
 }
 
 .header__title,
@@ -116,7 +115,7 @@ span,
 }
 
 .header__title {
-    font-size: 2.875rem;
+    font-size: 46px;
     margin: 0;
 }
 
@@ -127,7 +126,7 @@ span,
 .main__skills,
 .footer__p,
 .main__image-text {
-    font-size: 1.375rem;
+    font-size: 22px;
 }
 
 .header__subtitle {
@@ -157,6 +156,7 @@ span,
 }
 
 .section__stats {
+    margin-top: 40px;
     display: flex;
     justify-content: space-around;
 }
@@ -177,7 +177,7 @@ span,
 }
 
 .section__stats-title {
-    font-size: 1.5rem;
+    font-size: 24px;
 }
 
 .section__secondary {
@@ -187,8 +187,8 @@ span,
 }
 
 .section__button {
-    width: 18.125rem;
-    padding: 1.438rem 0;
+    width: 290px;
+    height: 80px;
     border-radius: 10px;
     border: none;
     outline: none;
@@ -293,12 +293,12 @@ span,
 
 .main__image-p {
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 14px;
 }
 
 .main__image-button {
-    width: 2.375rem;
-    height: 2.375rem;
+    width: 38px;
+    height: 38px;
     border: none;
     outline: none;
     border-radius: 50%;
@@ -306,34 +306,19 @@ span,
 }
 
 .main__image-button svg {
-    width: 1.125rem;
-    height: 0.625rem;
+    width: 18px;
+    height: 10px;
 }
 
 .footer__p {
-    margin: 6rem 0 3rem;
+    padding: 60px 0 40px 0;
 }
 
 .scroll {
     display: none;
 }
 
-@media (max-width: 1024px) {
-
-    html {
-        font-size: 12px;
-    }
-
-    .header__button svg {
-        width: 2.2rem;
-        height: 2.2rem;
-    }
-
-    .main__img {
-        width: 330px;
-    }
-
-}
+@media (max-width: 1024px) {}
 
 @media (max-width: 600px) {
 
@@ -341,22 +326,31 @@ span,
         font-size: 8px;
     }
 
+    .header__button {
+        width: 48px;
+        height: 48px;
+    }
+
     .header__button svg {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 20px;
+        height: 20px;
     }
 
-    .header__main {
-        flex-direction: column;
+    .header__main-img {
+        width: 107px;
+        height: 107px;
     }
 
-    .header__main-link svg {
-        width: 2.5rem;
-        height: 2.5rem;
+    .header__title {
+        font-size: 32px;
     }
 
-    .header__main-developer {
-        padding: 0;
+    .header__subtitle,
+    .section__stats-p,
+    .main__portfolio-text,
+    .main__skills,
+    .footer__p {
+        font-size: 14px;
     }
 
     .header__title,
@@ -364,14 +358,45 @@ span,
         text-align: center;
     }
 
+    .header__main {
+        flex-direction: column;
+    }
+
+    .header__main-link svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header__main-developer {
+        padding: 0;
+    }
+
     .header__main-list {
         justify-content: center;
         margin-top: 2rem;
     }
 
+    .section__stats-title {
+        font-size: 16px;
+    }
+
+    .section__secondary {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .section__button {
+        width: 158px;
+        height: 44px;
+    }
+
     .section__link--download svg {
         width: 10px;
         height: 11px;
+    }
+
+    .section__link {
+        font-size: 12px;
     }
 
     .main__skills,
@@ -384,25 +409,25 @@ span,
     }
 
     .footer__p {
-        margin: 3rem 0 5rem;
+        padding: 20px 0 40px 0;
     }
 
     .main__image-title {
-        font-size: 2rem;
+        font-size: 16px;
     }
 
     .main__image-p {
-        font-size: 1.3rem
+        font-size: 10px;
     }
 
     .main__image-button {
-        width: 3rem;
-        height: 3rem;
+        width: 24px;
+        height: 24px;
     }
 
     .main__image-button svg {
-        width: 1.2rem;
-        height: 0.825rem;
+        width: 12px;
+        height: 10px;
     }
 
     .scroll {
