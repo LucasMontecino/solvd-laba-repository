@@ -38,11 +38,11 @@ span,
 
 .wrapper {
     background-color: var(--bg-primary);
-    transition: all 2s linear;
+    transition: background-color 2s linear;
 }
 
 .theme-transition {
-    transition: all 2s linear;
+    transition: background-color 2s linear;
 }
 
 .container {
@@ -156,9 +156,9 @@ span,
 }
 
 .section__stats {
-    margin-top: 40px;
     display: flex;
     justify-content: space-around;
+    padding: 20px 2px;
 }
 
 .section__stats-item {
@@ -372,7 +372,7 @@ span,
 
     .header__main-list {
         justify-content: center;
-        margin-top: 2rem;
+        padding-top: 16px;
     }
 
     .section__stats-title {
@@ -380,8 +380,7 @@ span,
     }
 
     .section__secondary {
-        margin-top: 30px;
-        margin-bottom: 30px;
+        padding: 18px 20px;
     }
 
     .section__button {
@@ -405,10 +404,6 @@ span,
 
     .main__img {
         width: 320px;
-    }
-
-    .footer__p {
-        padding: 20px 0 40px 0;
     }
 
     .main__image-title {
