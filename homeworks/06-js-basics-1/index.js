@@ -107,3 +107,43 @@ function times(x) {
 function dividedBy(x) {
   return (y) => Math.floor(y / x);
 }
+
+// 6 https://www.codewars.com/kata/get-the-middle-character
+
+function getMiddle(s) {
+  let result = "";
+
+  function isEven(value) {
+    return value % 2 === 0;
+  }
+
+  if (isEven(s.length)) {
+    result += `${s[s.length / 2 - 1]}${s[s.length / 2]}`;
+  } else {
+    result += `${s[Math.floor(s.length / 2)]}`;
+  }
+
+  return result;
+}
+
+// 7 https://www.codewars.com/kata/partition-on
+// partition the items array so that all values for which pred returns true are
+// at the end, returning the index of the first true value
+
+function partitionOn(pred, items) {
+  let pivoteIndex = 0;
+
+  for (let i = 0; i < items.length; i++) {
+    if (!pred(items[i])) {
+      const aux = items[i];
+
+      for (let j = i; j > pivoteIndex; j--) {
+        items[j] = items[j - 1];
+      }
+
+      items[pivoteIndex] = aux;
+      pivoteIndex++;
+    }
+  }
+  return pivoteIndex;
+}
