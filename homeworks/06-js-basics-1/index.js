@@ -192,3 +192,15 @@ function findOutlier(integers) {
 
   return result.even.length === 1 ? result.even[0] : result.odd[0];
 }
+
+// 11 https://www.codewars.com/kata/zipwith
+
+function zipWith(fn, a0, a1) {
+  let result = [];
+
+  for (let i = 0; i < a0.length; i++) {
+    if (a1[i] != null) result.push(fn(a0[i], a1[i]));
+  }
+
+  return result;
+}
