@@ -147,3 +147,48 @@ function partitionOn(pred, items) {
   }
   return pivoteIndex;
 }
+
+// 9 https://www.codewars.com/kata/find-the-odd-int
+
+function findOdd(A) {
+  let obj = {};
+
+  for (let i = 0; i < A.length; i++) {
+    let curr = A[i];
+
+    obj[curr] = obj[curr] + 1 || 1;
+  }
+
+  function isEven(value) {
+    return value % 2 === 0;
+  }
+
+  for (let key in obj) {
+    if (!isEven(obj[key])) return +key;
+  }
+}
+
+// 10 https://www.codewars.com/kata/find-the-parity-outlier
+
+function findOutlier(integers) {
+  let result = {
+    even: [],
+    odd: [],
+  };
+
+  function isEven(value) {
+    return value % 2 === 0;
+  }
+
+  for (let i = 0; i < integers.length; i++) {
+    let curr = integers[i];
+
+    if (!isEven(curr)) {
+      result.odd.push(curr);
+    } else {
+      result.even.push(curr);
+    }
+  }
+
+  return result.even.length === 1 ? result.even[0] : result.odd[0];
+}
