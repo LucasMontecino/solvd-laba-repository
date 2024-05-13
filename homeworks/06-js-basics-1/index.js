@@ -1,11 +1,7 @@
 // 1 https://www.codewars.com/kata/opposite-number
 
 function opposite(number) {
-  return number && number !== 0
-    ? -number
-    : number === 0
-    ? number
-    : "Please enter a number";
+  return number == 0 ? number : -number;
 }
 
 // 2 https://www.codewars.com/kata/basic-mathematical-operations
@@ -112,15 +108,16 @@ function dividedBy(x) {
 
 function getMiddle(s) {
   let result = "";
+  let middleS = s.length / 2;
 
   function isEven(value) {
     return value % 2 === 0;
   }
 
   if (isEven(s.length)) {
-    result += `${s[s.length / 2 - 1]}${s[s.length / 2]}`;
+    result += `${s[middleS - 1]}${s[middleS]}`;
   } else {
-    result += `${s[Math.floor(s.length / 2)]}`;
+    result += `${s[Math.floor(middleS)]}`;
   }
 
   return result;
@@ -171,26 +168,27 @@ function findOdd(A) {
 // 10 https://www.codewars.com/kata/find-the-parity-outlier
 
 function findOutlier(integers) {
-  let result = {
-    even: [],
-    odd: [],
-  };
+  let firstThreeValues = integers.slice(0, 3);
+  let evenCount = 0;
 
-  function isEven(value) {
-    return value % 2 === 0;
+  function isEven(number) {
+    return number % 2 === 0;
   }
 
-  for (let i = 0; i < integers.length; i++) {
-    let curr = integers[i];
+  for (let curr of firstThreeValues) {
+    if (isEven(curr)) evenCount++;
+  }
 
-    if (!isEven(curr)) {
-      result.odd.push(curr);
+  let oddCount = 3 - evenCount;
+  let mayorityType = evenCount > oddCount ? "even" : "odd";
+
+  for (let curr of integers) {
+    if (mayorityType === "even") {
+      if (!isEven(curr)) return curr;
     } else {
-      result.even.push(curr);
+      if (isEven(curr)) return curr;
     }
   }
-
-  return result.even.length === 1 ? result.even[0] : result.odd[0];
 }
 
 // 11 https://www.codewars.com/kata/zipwith
@@ -224,9 +222,7 @@ function filterString(value) {
 // 13 https://www.codewars.com/kata/n-th-fibonacci
 
 function nthFibo(n) {
-  if (n === 1) {
-    return 0;
-  }
+  if (n === 1) return 0;
 
   if (n === 2 || n === 3) {
     return 1;
