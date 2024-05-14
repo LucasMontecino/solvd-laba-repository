@@ -1,4 +1,3 @@
-// fix: task 1, task 5, task 9
 // 1 https://www.codewars.com/kata/5715eaedb436cf5606000381
 
 function positiveSum(arr) {
