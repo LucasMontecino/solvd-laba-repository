@@ -1,16 +1,6 @@
 class Serializable {
   serialize() {
-    const data = {
-      class: this.constructor.name,
-      props: {},
-    };
-
-    for (let key in this) {
-      if (this.hasOwnProperty(key) && this[key] !== undefined) {
-        data.props[key] = this.serializeValue(this[key]);
-      }
-    }
-    return JSON.stringify(data);
+    return JSON.stringify(this);
   }
 
   serializeValue(value) {
@@ -36,6 +26,7 @@ class Serializable {
 
   wakeFrom(serialized) {
     const data = JSON.parse(serialized);
+
     if (data.class !== this.name)
       throw new Error(
         `Cannot deserialize into ${this.name} from ${data.class}`
@@ -61,3 +52,57 @@ class Serializable {
     else throw new Error(`Unsupported data type: ${data.type}`);
   }
 }
+
+class UserDTO extends Serializable {
+  constructor({
+    firstName = "lucas",
+    lastName = "m",
+    phone = "3842913",
+    birth = "1999-01-01",
+  }) {
+    super();
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.phone = phone;
+    this.birth = birth;
+  }
+
+  printInfo() {
+    console.log(
+      `${this.firstName[0]}. ${this.lastName} - ${
+        this.phone
+      }, ${this.birth.toISOString()}`
+    );
+  }
+}
+
+let tolik = new UserDTO({
+  firstName: "Anatoliy",
+  lastName: "Nashovich",
+  phone: "2020327",
+  birth: new Date("1999-01-02"),
+});
+
+tolik.printInfo();
+
+const serialized = tolik.serialize();
+console.log(serialized);
+tolik = null;
+
+// const resurrectedTolik = new Serializable.wakeFrom(serialized);
+// console.log(resurrectedTolik);
+
+// console.log(resurrectedTolik instanceof UserDTO);
+
+// class Post extends Serializable {
+//   constructor({ content, date, author }) {
+//     super();
+
+//     this.content = content;
+//     this.date = date;
+//     this.author = author;
+//   }
+// }
+
+// console.log(new Post().wakeFrom(serialized));
