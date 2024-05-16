@@ -2,11 +2,8 @@
 
 function positiveSum(arr) {
   return arr.reduce((acc, el) => {
-    if (el > 0) {
-      return acc + el;
-    } else {
-      return acc;
-    }
+    if (el > 0) return acc + el;
+    else return acc;
   }, 0);
 }
 
@@ -48,20 +45,19 @@ function getEvenNumbers(numbersArray) {
 // 5 https://www.codewars.com/kata/5a090c4e697598d0b9000004
 
 function solve(arr) {
-  let cpyOne = [...arr];
-  let cpyTwo = [...arr];
+  let cpyArr = [...arr];
 
-  cpyOne.sort((a, b) => (a < b ? 1 : -1));
-  cpyTwo.sort((a, b) => (a > b ? 1 : -1));
+  arr.sort((a, b) => (a < b ? 1 : -1));
+  cpyArr.sort((a, b) => (a > b ? 1 : -1));
 
   let result = [];
-  for (let i = 0; i < cpyOne.length; i++) {
-    if (!result.includes(cpyOne[i])) {
-      result.push(cpyOne[i]);
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i])) {
+      result.push(arr[i]);
     }
 
-    if (!result.includes(cpyTwo[i])) {
-      result.push(cpyTwo[i]);
+    if (!result.includes(cpyArr[i])) {
+      result.push(cpyArr[i]);
     }
   }
   return result;
@@ -97,14 +93,19 @@ function binaryArrayToNumber(arr) {
 // 9 https://www.codewars.com/kata/585d7d5adb20cf33cb000235
 
 function findUniq(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
-    if (arr[i] !== arr[i + 1] && arr[i + 1] !== arr[i + 2]) {
-      return arr[i + 1];
-    }
+  let firstThreeValues = arr.slice(0, 3);
 
-    if (arr[i] !== arr[i + 1] && arr[i] !== arr[i + 2]) {
-      return arr[i];
-    }
+  let obj = {};
+
+  for (let i = 0; i < firstThreeValues.length; i++) {
+    obj[firstThreeValues[i]] = obj[firstThreeValues[i]] + 1 || 1;
+  }
+
+  let value = 0;
+  for (let key in obj) if (obj[key] > 1) value = key;
+
+  for (let curr of arr) {
+    if (curr != value) return curr;
   }
 }
 
