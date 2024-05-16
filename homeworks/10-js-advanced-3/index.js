@@ -21,3 +21,32 @@ function validateMessage(msg) {
     console.log(error.name, error.message);
   }
 }
+
+// 2 https://www.codewars.com/kata/5a353a478f27f244a1000076/train/javascript
+
+async function sayJoke(apiUrl, jokeId) {
+  try {
+    let response = await fetch(apiUrl);
+    let data = await response.json();
+    console.log(data.jokes);
+
+    let jokes = data.jokes.map((joke) => {
+      return {
+        id: joke.id,
+        setup: joke.setup || "There is no setup",
+        punchLine: joke.delivery || "There is no punchline",
+      };
+    });
+
+    let joke = jokes.find((item) => item.id === jokeId);
+
+    console.log(joke);
+  } catch (error) {
+    console.log(error.name, error.message);
+  }
+}
+
+let user = await sayJoke("https://v2.jokeapi.dev/joke/Any?amount=10", 70);
+
+let newUser = { name: "lucas", title: user };
+console.log(newUser);
