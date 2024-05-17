@@ -1,23 +1,6 @@
 class Serializable {
   serialize() {
-    for (const key in this) {
-      if (this.hasOwnProperty(key)) {
-        const value = this[key];
-        if (
-          value === null ||
-          typeof value === "string" ||
-          typeof value === "number" ||
-          (typeof value === "object" &&
-            (Array.isArray(value) || value instanceof Date))
-        ) {
-          continue;
-        } else {
-          throw new Error(
-            `Value is of an unsopported type: ${typeof value}, at key: ${key}`
-          );
-        }
-      }
-    }
+    this.serializeValidation(this);
 
     const obj = {
       ...this,
@@ -25,6 +8,32 @@ class Serializable {
     };
 
     return JSON.stringify(obj);
+  }
+
+  serializeValidation(value) {
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        const current = value[key];
+        if (
+          current === null ||
+          typeof current === "string" ||
+          typeof current === "number" ||
+          current instanceof Date
+        ) {
+          continue;
+        } else if (Array.isArray(current)) {
+          for (let curr of current) {
+            this.serializeValidation({ [key]: curr });
+          }
+        } else if (typeof current === "object") {
+          this.serializeValidation(current);
+        } else {
+          throw new Error(
+            `Value is of an unsopported type: ${typeof current}, at key: ${key}`
+          );
+        }
+      }
+    }
   }
 
   wakeFrom(serialized) {
@@ -57,17 +66,56 @@ class UserDTO extends Serializable {
   }
 }
 
+// ---------- correct example ---------
 let tolik = new UserDTO({
-  firstName: "Anatoliy",
-  lastName: "toolik",
+  firstName: "Lucas",
+  lastName: "Montecino",
   phone: "3794828400",
   birth: new Date("1999-01-02"),
 });
 
-const serialized = tolik.serialize();
-console.log(serialized);
+const serialize = tolik.serialize();
+// console.log(serialize);
 
 tolik = null;
+const wakeUp = new UserDTO({}).wakeFrom(serialize);
+// console.log(wakeUp);
 
-const wakeUp = new UserDTO({}).wakeFrom(serialized);
-console.log(wakeUp);
+// --------- wrong example ----------
+
+let firstBadTolik = new UserDTO({
+  firstName: ["Javier", "Hector", undefined],
+  lastName: "Montecino",
+  phone: "3794828400",
+  birth: new Date("1999-01-02"),
+});
+
+// const secondSerialize = firstBadTolik.serialize();
+
+// ----------- check for object values --------------
+
+let otherTest = new UserDTO({
+  firstName: ["Juan", "Guillermo"],
+  lastName: { first: "Tell", second: "Montes" },
+  phone: "3794828400",
+  birth: new Date("1999-01-02"),
+});
+
+const thirdSerialize = otherTest.serialize();
+// console.log(thirdSerialize);
+
+otherTest = null;
+
+const wakeUp2 = new UserDTO({}).wakeFrom(thirdSerialize);
+// console.log(wakeUp2);
+
+// ---------wrong example #2----------
+
+let anotherBadTolik = new UserDTO({
+  firstName: ["Juan", "Guillermo"],
+  lastName: { first: "Tell", second: undefined },
+  phone: "3794828400",
+  birth: new Date("1999-01-02"),
+});
+
+// const fourthSerialize = anotherBadTolik.serialize();
