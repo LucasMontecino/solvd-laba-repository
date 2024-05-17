@@ -1,65 +1,45 @@
 class Serializable {
   serialize() {
-    return JSON.stringify(this);
-  }
-
-  serializeValue(value) {
-    if (value === null) return { type: "null", value: null };
-    else if (Array.isArray(value))
-      return {
-        type: "array",
-        value: value.map((item) => this.serializeValue(item)),
-      };
-    else if (value instanceof Date)
-      return { type: "date", value: value.toISOString() };
-    else if (typeof value === "object") {
-      const serializedObject = {};
-      for (let key in value) {
-        if (value.hasOwnProperty(key))
-          serializedObject[key] = this.serializeValue(value[key]);
+    for (const key in this) {
+      if (this.hasOwnProperty(key)) {
+        const value = this[key];
+        if (
+          value === null ||
+          typeof value === "string" ||
+          typeof value === "number" ||
+          (typeof value === "object" &&
+            (Array.isArray(value) || value instanceof Date))
+        ) {
+          continue;
+        } else {
+          throw new Error(
+            `Value is of an unsopported type: ${typeof value}, at key: ${key}`
+          );
+        }
       }
-      return { type: "object", value: serializedObject };
-    } else if (["number", "string"].includes(typeof value))
-      return { type: typeof value, value: value };
-    else throw new Error(`Unsopported data type: ${typeof value}`);
+    }
+
+    const obj = {
+      ...this,
+      className: this.constructor.name,
+    };
+
+    return JSON.stringify(obj);
   }
 
   wakeFrom(serialized) {
-    const data = JSON.parse(serialized);
+    const obj = JSON.parse(serialized);
+    const className = obj.className;
 
-    if (data.class !== this.name)
-      throw new Error(
-        `Cannot deserialize into ${this.name} from ${data.class}`
-      );
-    const props = {};
-    for (let key in data.props)
-      props[key] = this.deserializeValue(data.props[key]);
-    return new this(props);
-  }
+    if (!className)
+      throw new Error("Serialized object does not contain a class identifier.");
 
-  deserializeValue(data) {
-    if (data.type === "null") return null;
-    else if (data.type === "array")
-      return data.value.map((item) => this.deserializeValue(item));
-    else if (data.type === "Date") return new Date(data.value);
-    else if (data.type === "object") {
-      const obj = {};
-      for (let key in data.value) {
-        obj[key] = this.deserializeValue(data.value[key]);
-      }
-      return obj;
-    } else if (["number", "string"].includes(data.type)) return data.value;
-    else throw new Error(`Unsupported data type: ${data.type}`);
+    return obj;
   }
 }
 
 class UserDTO extends Serializable {
-  constructor({
-    firstName = "lucas",
-    lastName = "m",
-    phone = "3842913",
-    birth = "1999-01-01",
-  }) {
+  constructor({ firstName, lastName, phone, birth }) {
     super();
 
     this.firstName = firstName;
@@ -79,30 +59,15 @@ class UserDTO extends Serializable {
 
 let tolik = new UserDTO({
   firstName: "Anatoliy",
-  lastName: "Nashovich",
-  phone: "2020327",
+  lastName: "toolik",
+  phone: "3794828400",
   birth: new Date("1999-01-02"),
 });
 
-tolik.printInfo();
-
 const serialized = tolik.serialize();
 console.log(serialized);
+
 tolik = null;
 
-// const resurrectedTolik = new Serializable.wakeFrom(serialized);
-// console.log(resurrectedTolik);
-
-// console.log(resurrectedTolik instanceof UserDTO);
-
-// class Post extends Serializable {
-//   constructor({ content, date, author }) {
-//     super();
-
-//     this.content = content;
-//     this.date = date;
-//     this.author = author;
-//   }
-// }
-
-// console.log(new Post().wakeFrom(serialized));
+const wakeUp = new UserDTO({}).wakeFrom(serialized);
+console.log(wakeUp);
