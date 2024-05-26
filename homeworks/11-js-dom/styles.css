@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #F2F3F4;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header {
+    padding: 20px;
+    background-color: #3498DB;
+}
+
+.header__title {
+    text-align: center;
+    color: #fff;
+}
+
+.main {
+    margin: 20px 0
+}
+
+.main__container {
+    display: grid;
+    grid-template-columns: repeat(20, 40px);
+    grid-template-rows: repeat(30, 40px);
+    justify-content: center;
+    max-width: 1070px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.main__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+}
+
+.selected {
+    border: 3px solid #1A237E;
+}
+
+.active-row,
+.active-col {
+    background-color: #3498DB;
+}
