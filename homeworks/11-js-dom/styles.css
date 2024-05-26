@@ -41,3 +41,12 @@ body {
     align-items: center;
     border: 1px solid #ccc;
 }
+
+.selected {
+    border: 3px solid #1A237E;
+}
+
+.active-row,
+.active-col {
+    background-color: #3498DB;
+}
