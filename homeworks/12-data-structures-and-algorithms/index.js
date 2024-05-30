@@ -18,6 +18,7 @@ function straightSearchEngine(array, sku) {
   for (let i = 0; i < array.length; i++) {
     if (array[i].sku === sku) return array[i];
   }
+  return null;
 }
 
 function binarySearchEngine(array, sku) {
