@@ -27,6 +27,11 @@ module.exports = {
       minify: false,
     }),
   ],
+  devServer: {
+    open: true,
+    port: 3000,
+    compress: true,
+  },
   optimization: {
     minimizer: [
       new HtmlMinimizerPlugin({
