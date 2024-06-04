@@ -46,16 +46,4 @@ module.exports = {
       }),
     ],
   },
-  mode: "production",
-  devServer: {
-    static: {
-      directory: path.resolve(__dirname, "static"),
-      staticOptions: {},
-      publicPath: "/static-public-path",
-      serveIndex: true,
-      watch: true,
-    },
-    compress: true,
-    port: 9000,
-  },
 };
