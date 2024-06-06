@@ -3,6 +3,24 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 
+const rules = [
+  {
+    test: /\.scss$/,
+    use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+  },
+];
+
+const plugins = [
+  new MiniCssExtractPlugin({
+    filename: "styles.css",
+  }),
+  new HtmlWebpackPlugin({
+    template: "./src/index.html",
+    filename: "index.html",
+    minify: false,
+  }),
+];
+
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -10,23 +28,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-    ],
+    rules,
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "styles.css",
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-      minify: false,
-    }),
-  ],
+  plugins: plugins,
   devServer: {
     open: true,
     port: 3000,
