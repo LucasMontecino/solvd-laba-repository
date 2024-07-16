@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import Button from "./components/Button/Button";
+import Cards from "./components/Cards/Cards";
+
+export type Avatar = {
+  id: string | number;
+  url: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [avatars, setAvatars] = useState<Avatar[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const [data, setData] = useState<Avatar[]>([]);
+
+  async function fetchAvatars(url: string) {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data && data.length > 0) {
+      setAvatars(
+        data.map(({ id, url }: Avatar) => {
+          return {
+            id,
+            url,
+          };
+        })
+      );
+      setLoading(true);
+    }
+  }
+
+  function getRandomNumber(length: number) {
+    return Math.floor(Math.random() * length);
+  }
+
+  function handleClick() {
+    const randomNumber = getRandomNumber(avatars.length);
+
+    setData((avatar) => [...avatar, avatars[randomNumber]]);
+  }
+
+  useEffect(() => {
+    document.title = "Functional Avatar App";
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      fetchAvatars("https://tinyfac.es/api/data?limit=50&quality=0");
+    }
+  }, [loading]);
+
+  console.log(data);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Cards cards={data} onClick={handleClick} />
+      <Button text="Refresh All" />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
