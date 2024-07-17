@@ -38,7 +38,31 @@ function App() {
   function handleClick() {
     const randomNumber = getRandomNumber(avatars.length);
 
-    setData((avatar) => [...avatar, avatars[randomNumber]]);
+    setData((avatar) => [
+      ...avatar,
+      { ...avatars[randomNumber], id: crypto.randomUUID() },
+    ]);
+  }
+
+  function handleRefreshAll() {
+    setData((currentData) =>
+      currentData.map(() => {
+        const randomNumber = getRandomNumber(avatars.length);
+        return { ...avatars[randomNumber], id: crypto.randomUUID() };
+      })
+    );
+  }
+
+  function handleRefresh(id: string | number) {
+    setData((currentData) =>
+      currentData.map((avatar) => {
+        if (avatar.id === id) {
+          const randomNumber = getRandomNumber(avatars.length);
+          return { ...avatars[randomNumber], id: crypto.randomUUID() };
+        }
+        return avatar;
+      })
+    );
   }
 
   useEffect(() => {
@@ -51,13 +75,11 @@ function App() {
     }
   }, [loading]);
 
-  console.log(data);
-
   return (
-    <>
-      <Cards cards={data} onClick={handleClick} />
-      <Button text="Refresh All" />
-    </>
+    <div className="container">
+      <Cards cards={data} onClick={handleClick} onRefresh={handleRefresh} />
+      <Button text="Refresh All" onClick={handleRefreshAll} />
+    </div>
   );
 }
 
