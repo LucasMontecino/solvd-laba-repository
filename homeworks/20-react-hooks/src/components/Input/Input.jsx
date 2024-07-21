@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import styles from "./Input.module.css";
 export default function Input({
   type,
   value,
@@ -7,9 +8,11 @@ export default function Input({
   name,
 }) {
   return (
-    <div>
+    <div className={styles.container}>
       <input type={type} name={name} value={value} onChange={handleChange} />
-      <button onClick={handleClick}>Add</button>
+      <button className={styles.button} onClick={handleClick}>
+        Add
+      </button>
     </div>
   );
 }

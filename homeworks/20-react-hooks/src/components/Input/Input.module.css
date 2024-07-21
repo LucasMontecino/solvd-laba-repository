@@ -1,0 +1,29 @@
+.container {
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    border: 2px solid #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container input {
+    padding: 10px 6px;
+    outline: none;
+    background-color: #ccc;
+    color: #000;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    transition: all .5s ease;
+}
+
+.container input:hover {
+    background-color: #BFC9CA;
+}
+
+.button:focus {
+    outline: none;
+}
