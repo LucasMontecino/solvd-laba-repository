@@ -1,19 +1,11 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
-import { defaultList } from "../list";
+import { createContext, useState } from "react";
+import { todoList } from "../list";
 
 export const ToDoContext = createContext(null);
 
 export default function ToDoState({ children }) {
-  const [list, setList] = useState([]);
-
-  function getList() {
-    setList(defaultList);
-  }
-
-  useEffect(() => {
-    getList();
-  }, []);
+  const [list, setList] = useState(todoList);
 
   return (
     <ToDoContext.Provider value={{ list, setList }}>
