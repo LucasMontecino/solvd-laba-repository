@@ -49,6 +49,7 @@
 
 .form__input {
   font-family: "Roboto", sans-serif;
+  width: 300px;
   border: 4px solid #5BC0BE;
   border-radius: 4px;
   padding: 6px 0 6px 6px;
@@ -85,31 +86,38 @@
 }
 
 .hp-list {
+  width: 500px;
   margin-top: 30px;
   background-color: #FFFFFF;
   color: #0B132B;
   padding: 20px 20px 40px 20px;
   border-radius: 8px;
   border: 4px solid #5BC0BE;
-  box-shadow: 0 0 4px 3px rgba(255, 255, 255, .5);
+  box-shadow: 0 0 3px 2px rgba(255, 255, 255, .5);
 }
 
 .hp-list__title {
   margin-bottom: 10px;
   font-size: 22px;
   text-align: center;
+  color: #3A506B;
 }
 
 .hp-list__parent {
   list-style-type: none;
-  max-width: 250px;
 }
 
 .hp-list__item {
   display: flex;
-  gap: 12px;
   align-items: center;
+  justify-content: space-between;
   padding: 6px 0;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .bullets {
@@ -117,4 +125,21 @@
   height: 10px;
   border-radius: 50%;
   background-color: #3A506B;
+}
+
+.icons {
+  display: flex;
+  gap: 12px;
+}
+
+.icons__item {
+  cursor: pointer;
+}
+
+/* errors */
+
+.errors {
+  color: #ff0000;
+  margin-top: 5px;
+  font-size: 18px;
 }
