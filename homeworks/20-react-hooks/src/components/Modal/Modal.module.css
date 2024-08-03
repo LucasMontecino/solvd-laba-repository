@@ -1,0 +1,49 @@
+.container {
+    border: 2px solid #000;
+    background-color: #5D6D7E;
+    border-radius: 8px;
+    padding: 10px 0;
+    width: 320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.input {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #ccc;
+    color: #000;
+    font-weight: 700;
+    outline: none;
+    border: none;
+}
+
+.modalButton {
+    cursor: pointer;
+    font-size: 32px;
+    transition: all .5s ease;
+}
+
+.modalButton:hover {
+    transform: scale(1.2);
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+}
+
+.specialTitle {
+    font-size: 22px;
+    color: #F1C40F;
+}
