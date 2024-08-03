@@ -3,6 +3,8 @@ import ListItems from "../ListItems/ListItems";
 import { ToDoContext } from "../../context/ToDoContext";
 import FormList from "../FormList/FormList";
 import Errors from "../Errors/Errors";
+import Modal from "../Modal/Modal";
+import capitalizeTask from "../../utils/capitalizeTask";
 
 function validateErrors(input) {
   if (input.length === 0)
@@ -11,13 +13,11 @@ function validateErrors(input) {
     throw new Error("Hey, the maximum of characters is 50!");
 }
 
-function capitalizeTask(input) {
-  return input[0].toUpperCase() + input.slice(1);
-}
-
 export default function ToDo() {
   const { list, setList, errors, setErrors } = useContext(ToDoContext);
   const [task, setTask] = useState("");
+  const [editTask, setEditTask] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -43,19 +43,49 @@ export default function ToDo() {
     }
   }
 
+  function handleDeleteTask(id) {
+    setList(list.filter((item) => item.id !== id));
+  }
+
+  function handleEditTask(id) {
+    const currentTask = list.find((item) => item.id === id);
+    setEditTask(currentTask);
+    setShowModal(true);
+  }
+
   function handleChange(e) {
     setTask(e.target.value);
   }
 
   return (
-    <div className="ToDo">
-      <FormList
-        task={task}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
-      {errors && <Errors errors={errors} />}
-      <ListItems />
-    </div>
+    <>
+      <div
+        className={`ToDo ${showModal ? "opacity" : null}`}
+        onClick={() => {
+          showModal ? setShowModal(false) : null;
+        }}
+      >
+        <FormList
+          task={task}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          buttonText={"Add Task"}
+          showModal={showModal}
+        />
+        {errors && <Errors errors={errors} />}
+        <ListItems
+          showModal={showModal}
+          handleDeleteTask={handleDeleteTask}
+          handleEditTask={handleEditTask}
+        />
+      </div>
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          editTask={editTask}
+          setEditTask={setEditTask}
+        />
+      )}
+    </>
   );
 }

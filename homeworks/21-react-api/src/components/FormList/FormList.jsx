@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
 
-export default function FormList({ handleSubmit, task, handleChange }) {
+export default function FormList({
+  handleSubmit,
+  task,
+  handleChange,
+  buttonText,
+}) {
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className={"form"} onSubmit={handleSubmit}>
       <input
         type="text"
         value={task}
@@ -10,7 +15,7 @@ export default function FormList({ handleSubmit, task, handleChange }) {
         className="form__input"
       />
       <button type="submit" className="form__button">
-        Add Task
+        {buttonText}
       </button>
     </form>
   );
