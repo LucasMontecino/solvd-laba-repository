@@ -3,7 +3,11 @@ import { useContext } from "react";
 import { ToDoContext } from "../../context/ToDoContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-export default function ListItems({ handleDeleteTask, handleEditTask }) {
+export default function ListItems({
+  handleDeleteTask,
+  handleEditTask,
+  handleToggleCompleteTask,
+}) {
   const { list } = useContext(ToDoContext);
   return (
     <>
@@ -14,7 +18,10 @@ export default function ListItems({ handleDeleteTask, handleEditTask }) {
             {list &&
               list.map((item) => (
                 <li key={item.id} className="hp-list__item">
-                  <div className="task">
+                  <div
+                    className={`task ${item.isCompleted ? "completed" : ""}`}
+                    onClick={() => handleToggleCompleteTask(item.id)}
+                  >
                     <div className="bullets"></div>
                     {item.task}
                   </div>

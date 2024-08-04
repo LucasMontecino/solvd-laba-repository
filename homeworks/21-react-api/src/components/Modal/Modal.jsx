@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import FormList from "../FormList/FormList";
 import { FaWindowClose } from "react-icons/fa";
 import { ToDoContext } from "../../context/ToDoContext";
@@ -8,6 +8,11 @@ import capitalizeTask from "../../utils/capitalizeTask";
 // eslint-disable-next-line react/prop-types
 export default function Modal({ setShowModal, editTask, setEditTask }) {
   const { setList } = useContext(ToDoContext);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   function handleEditChange(e) {
     setEditTask((prevTask) => ({
@@ -35,7 +40,7 @@ export default function Modal({ setShowModal, editTask, setEditTask }) {
   }
 
   return (
-    <div className="modal">
+    <div className={`modal ${show ? "show" : ""}`}>
       <FaWindowClose
         size={"2em"}
         className="modal__close"

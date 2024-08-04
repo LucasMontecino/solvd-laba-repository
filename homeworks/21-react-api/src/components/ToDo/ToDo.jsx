@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ListItems from "../ListItems/ListItems";
 import { ToDoContext } from "../../context/ToDoContext";
 import FormList from "../FormList/FormList";
@@ -26,7 +26,7 @@ export default function ToDo() {
       validateErrors(task);
 
       const newTask = {
-        id: list.length + 1,
+        id: crypto.randomUUID(),
         task: capitalizeTask(task),
         isCompleted: false,
       };
@@ -57,6 +57,22 @@ export default function ToDo() {
     setTask(e.target.value);
   }
 
+  function handleToggleCompleteTask(id) {
+    setList((prevList) =>
+      prevList.map((item) =>
+        item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
+      )
+    );
+  }
+
+  function handleDeleteCompletedTasks() {
+    setList(list.filter((item) => !item.isCompleted));
+  }
+
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
+
   return (
     <>
       <div
@@ -77,7 +93,13 @@ export default function ToDo() {
           showModal={showModal}
           handleDeleteTask={handleDeleteTask}
           handleEditTask={handleEditTask}
+          handleToggleCompleteTask={handleToggleCompleteTask}
         />
+        {list && list.length > 0 ? (
+          <button onClick={handleDeleteCompletedTasks} className="btn-delete">
+            Delete All Completed Tasks
+          </button>
+        ) : null}
       </div>
       {showModal && (
         <Modal

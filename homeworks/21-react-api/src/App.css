@@ -119,6 +119,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  max-width: 380px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.task:hover {
+  color: #5BC0BE;
 }
 
 .bullets {
@@ -135,10 +142,20 @@
 
 .icons__item {
   cursor: pointer;
+  transition: all .3s ease;
+}
+
+.icons__item:hover {
+  color: #5BC0BE;
 }
 
 .opacity {
   filter: blur(2px);
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: .6;
 }
 
 /* errors */
@@ -163,6 +180,14 @@
   border-radius: 8px;
   border: 5px solid #5BC0BE;
   z-index: 999;
+  opacity: 0;
+  transform: scale(.8);
+  transition: all .3s ease;
+}
+
+.modal.show {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .modal__close {
@@ -171,4 +196,23 @@
   right: 20px;
   cursor: pointer;
   color: #ff0000;
+}
+
+.btn-delete {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 32px;
+  background-color: #ff0000;
+  color: #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  padding: 6px 12px;
+  box-shadow: 0 0 19px 1px #ff0000;
+  transition: all .3s ease;
+}
+
+.btn-delete:hover {
+  opacity: .9;
 }
