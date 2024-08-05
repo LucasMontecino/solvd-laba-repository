@@ -1,56 +1,47 @@
 /* eslint-disable react/prop-types */
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FormList from "../FormList/FormList";
 import { FaWindowClose } from "react-icons/fa";
-import { ToDoContext } from "../../context/ToDoContext";
 import capitalizeTask from "../../utils/capitalizeTask";
+import { EDIT_TODO, useTodos } from "../../hooks/useTodos";
 
 // eslint-disable-next-line react/prop-types
-export default function Modal({ setShowModal, editTask, setEditTask }) {
-  const { setList } = useContext(ToDoContext);
-  const [show, setShow] = useState(false);
+export default function Modal({ setShowModal, editTask }) {
+  const { dispatch } = useTodos();
+  const [task, setTask] = useState(editTask.task);
 
   useEffect(() => {
-    setShow(true);
-  }, []);
+    setTask(editTask.task);
+  }, [editTask]);
 
   function handleEditChange(e) {
-    setEditTask((prevTask) => ({
-      ...prevTask,
-      task: e.target.value,
-    }));
+    setTask(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const updateTask = {
+    const updatedTask = {
       ...editTask,
-      task: capitalizeTask(editTask.task),
+      task: capitalizeTask(task),
     };
 
-    setList((prevList) => {
-      return prevList.map((item) =>
-        item.id === updateTask.id ? updateTask : item
-      );
-    });
-
-    console.log("edit task successfully!");
+    dispatch({ type: EDIT_TODO, payload: updatedTask });
     setShowModal(false);
   }
 
   return (
-    <div className={`modal ${show ? "show" : ""}`}>
+    <div className={`modal show`}>
       <FaWindowClose
         size={"2em"}
         className="modal__close"
-        onClick={() => setShowModal(false)}
+        onClick={setShowModal}
       />
       <FormList
         buttonText={"Edit Task"}
         className={"form"}
         handleChange={handleEditChange}
-        task={editTask.task}
+        task={task}
         handleSubmit={handleSubmit}
       />
     </div>

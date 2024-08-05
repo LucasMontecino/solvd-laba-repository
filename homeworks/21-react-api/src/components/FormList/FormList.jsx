@@ -5,6 +5,7 @@ export default function FormList({
   task,
   handleChange,
   buttonText,
+  inputRef,
 }) {
   return (
     <form className={"form"} onSubmit={handleSubmit}>
@@ -13,6 +14,7 @@ export default function FormList({
         value={task}
         onChange={handleChange}
         className="form__input"
+        ref={inputRef}
       />
       <button type="submit" className="form__button">
         {buttonText}

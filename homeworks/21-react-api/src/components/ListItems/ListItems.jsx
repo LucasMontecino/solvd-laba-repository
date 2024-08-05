@@ -1,44 +1,42 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import { ToDoContext } from "../../context/ToDoContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useTodos } from "../../hooks/useTodos";
 
 export default function ListItems({
   handleDeleteTask,
-  handleEditTask,
   handleToggleCompleteTask,
+  openModal,
 }) {
-  const { list } = useContext(ToDoContext);
+  const { state: list } = useTodos();
   return (
     <>
-      {list && list.length > 0 ? (
+      {list.length > 0 ? (
         <div className={"hp-list"}>
           <h2 className="hp-list__title">To Do List</h2>
           <ul className="hp-list__parent">
-            {list &&
-              list.map((item) => (
-                <li key={item.id} className="hp-list__item">
-                  <div
-                    className={`task ${item.isCompleted ? "completed" : ""}`}
-                    onClick={() => handleToggleCompleteTask(item.id)}
-                  >
-                    <div className="bullets"></div>
-                    {item.task}
-                  </div>
-                  <div className="icons">
-                    <FaEdit
-                      className="icons__item"
-                      size={"1.5em"}
-                      onClick={() => handleEditTask(item.id)}
-                    />
-                    <FaTrash
-                      className="icons__item"
-                      size={"1.5em"}
-                      onClick={() => handleDeleteTask(item.id)}
-                    />
-                  </div>
-                </li>
-              ))}
+            {list.map((item) => (
+              <li key={item.id} className="hp-list__item">
+                <div
+                  className={`task ${item.isCompleted ? "completed" : ""}`}
+                  onClick={() => handleToggleCompleteTask(item.id)}
+                >
+                  <div className="bullets"></div>
+                  {item.task}
+                </div>
+                <div className="icons">
+                  <FaEdit
+                    className="icons__item"
+                    size={"1.5em"}
+                    onClick={() => openModal(item)}
+                  />
+                  <FaTrash
+                    className="icons__item"
+                    size={"1.5em"}
+                    onClick={() => handleDeleteTask(item.id)}
+                  />
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       ) : null}

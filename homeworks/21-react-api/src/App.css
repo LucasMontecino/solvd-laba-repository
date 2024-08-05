@@ -196,9 +196,21 @@
   right: 20px;
   cursor: pointer;
   color: #ff0000;
+  transition: color .5s ease;
 }
 
-.btn-delete {
+.modal__close:hover {
+  color: #cb4335;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnContainer__delete {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -213,6 +225,30 @@
   transition: all .3s ease;
 }
 
-.btn-delete:hover {
+.btnContainer__delete:hover {
   opacity: .9;
+}
+
+.tasksCompleted {
+  background-color: #0B132B;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  font-weight: 700;
+}
+
+.tasksCompleted:hover {
+  opacity: 1;
+  border-color: #cb4335;
+  color: #cb4335;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.disabled:hover {
+  opacity: .4;
+  border: 1px solid #ff0000;
+  color: #ff0000;
 }
