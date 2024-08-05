@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 export const ADD_TODO = "ADD_TODO";
 export const DELETE_TODO = "DELETE_TODO";
@@ -8,7 +8,7 @@ export const EDIT_TODO = "EDIT_TODO";
 export const DELETE_COMPLETED = "DELETE_COMPLETED";
 export const CLEAR_ALL = "CLEAR_ALL";
 
-const initialState = [];
+const initialState = JSON.parse(localStorage.getItem("list")) || [];
 
 function todoReducer(state, action) {
   switch (action.type) {
@@ -46,6 +46,10 @@ export function useTodos() {
 
 export function ToDoProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(state));
+  }, [state]);
 
   return (
     <ToDoContext.Provider value={{ state, dispatch }}>
