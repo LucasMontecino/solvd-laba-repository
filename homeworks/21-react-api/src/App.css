@@ -87,7 +87,6 @@
 }
 
 .hp-list {
-  width: 500px;
   margin-top: 30px;
   background-color: #FFFFFF;
   color: #0B132B;
@@ -109,17 +108,18 @@
 }
 
 .hp-list__item {
+  max-width: 780px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 6px 0;
+  gap: 32px;
 }
 
 .task {
   display: flex;
   align-items: center;
   gap: 12px;
-  max-width: 380px;
   cursor: pointer;
   transition: all .3s ease;
 }
@@ -251,4 +251,10 @@
   opacity: .4;
   border: 1px solid #ff0000;
   color: #ff0000;
+}
+
+@media screen and (max-width: 480px) {
+  .bullets {
+    display: none;
+  }
 }
