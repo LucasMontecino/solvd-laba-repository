@@ -1,0 +1,27 @@
+.avatar {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    cursor: pointer;
+}
+
+.img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.overlay:hover {
+    opacity: 1;
+}
