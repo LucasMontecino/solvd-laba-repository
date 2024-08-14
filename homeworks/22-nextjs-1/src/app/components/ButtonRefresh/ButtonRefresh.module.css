@@ -1,0 +1,17 @@
+.btnRefreshAll {
+    position: absolute;
+    background-color: #02cc67;
+    color: #FFF;
+    border-radius: 6px;
+    bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: all .5s ease;
+    border: none;
+}
+
+.btnRefreshAll:hover {
+    opacity: .6;
+}

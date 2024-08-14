@@ -1,0 +1,16 @@
+.avatarContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.btnAdd {
+    background-color: var(--background-primary);
+    border: 4px solid #02cc67;
+    border-radius: 6px;
+    width: 240px;
+    height: 240px;
+    cursor: pointer;
+}
