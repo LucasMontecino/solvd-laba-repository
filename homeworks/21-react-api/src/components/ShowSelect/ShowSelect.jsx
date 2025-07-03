@@ -8,7 +8,6 @@ const ShowSelect = () => {
 
   const handleChangeListStatus = (e) => {
     setSelectStatusList(e.target.value);
-    console.log(e.target.value);
     dispatch({ type: FILTER_BY_STATUS, payload: e.target.value });
   };
 

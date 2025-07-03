@@ -81,9 +81,9 @@ function todoReducer(state, action) {
         ...state,
         filterList:
           action.payload === 'incompleted'
-            ? state.initialList.filter(handleCompleted)
-            : action.payload === 'completed'
             ? state.initialList.filter(handleIncompleted)
+            : action.payload === 'completed'
+            ? state.initialList.filter(handleCompleted)
             : state.initialList,
       };
     }
