@@ -28,7 +28,7 @@ function todoReducer(state, action) {
         initialList: state.initialList.filter(
           (todo) => todo.id !== action.payload
         ),
-        fitlerList: state.filterList.filter(
+        filterList: state.filterList.filter(
           (todo) => todo.id !== action.payload
         ),
       };

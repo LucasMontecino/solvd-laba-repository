@@ -86,9 +86,9 @@ export default function ToDo() {
           inputRef={inputRef}
         />
         {errors && <Errors errors={errors} />}
+        <ShowSelect />
         {filterList.length > 0 ? (
           <>
-            <ShowSelect />
             <ListItems
               handleDeleteTask={handleDeleteTask}
               handleToggleCompleteTask={handleToggleCompleteTask}
@@ -96,9 +96,7 @@ export default function ToDo() {
             />
           </>
         ) : (
-          <h4 className="initialMessage">
-            Start adding tasks using the input text above!
-          </h4>
+          <h4 className="initialMessage">No tasks found</h4>
         )}
 
         {filterList.length > 0 && (
